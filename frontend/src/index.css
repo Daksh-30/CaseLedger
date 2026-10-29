@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-cyber-border;
+  }
+  body {
+    @apply bg-cyber-bg text-cyber-text-primary;
+  }
+  ::-webkit-scrollbar {
+    @apply w-2;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-cyber-bg;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-cyber-border rounded-full;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-cyber-border-light;
+  }
+}
+
+@layer components {
+  /* ── Buttons ─────────────────────────────────────────────────────────── */
+  .btn-primary {
+    @apply px-4 py-2 bg-cyber-teal text-white font-semibold rounded-lg
+           hover:bg-cyber-teal-dim transition-all duration-200
+           disabled:opacity-50 disabled:cursor-not-allowed
+           focus:outline-none focus:ring-2 focus:ring-cyber-teal focus:ring-offset-2 focus:ring-offset-cyber-bg;
+  }
+  .btn-secondary {
+    @apply px-4 py-2 border border-cyber-border text-cyber-text-primary rounded-lg
+           bg-white hover:bg-cyber-bg hover:border-cyber-teal transition-all duration-200
+           disabled:opacity-50 disabled:cursor-not-allowed
+           focus:outline-none focus:ring-2 focus:ring-cyber-teal focus:ring-offset-2 focus:ring-offset-cyber-bg;
+  }
+  .btn-danger {
+    @apply px-4 py-2 bg-cyber-red text-white font-semibold rounded-lg
+           hover:bg-cyber-red-dim transition-all duration-200
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-warning {
+    @apply px-4 py-2 bg-cyber-amber text-white font-semibold rounded-lg
+           hover:bg-cyber-amber-dim transition-all duration-200
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  /* ── Layout primitives ───────────────────────────────────────────────── */
+  .card {
+    @apply bg-cyber-card border border-cyber-border rounded-xl p-6 shadow-sm;
+  }
+  .input-field {
+    @apply w-full bg-white border border-cyber-border rounded-lg px-4 py-2.5
+           text-cyber-text-primary placeholder-cyber-text-muted
+           focus:outline-none focus:border-cyber-teal focus:ring-1 focus:ring-cyber-teal
+           transition-colors duration-200;
+  }
+
+  /* ── Status chips ────────────────────────────────────────────────────── */
+  .status-active {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium
+           bg-emerald-100 text-emerald-700 border border-emerald-300;
+  }
+  .status-flagged {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium
+           bg-amber-100 text-amber-700 border border-amber-300;
+  }
+  .status-revoked {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium
+           bg-red-100 text-red-700 border border-red-300;
+  }
+}

@@ -1,0 +1,1127 @@
+{
+  "address": "0x5FbDB2315678afecb367f032d93F642f64180aa3",
+  "abi": [
+    {
+      "type": "constructor",
+      "stateMutability": "undefined",
+      "payable": false,
+      "inputs": []
+    },
+    {
+      "type": "error",
+      "name": "AccessControlBadConfirmation",
+      "inputs": []
+    },
+    {
+      "type": "error",
+      "name": "AccessControlUnauthorizedAccount",
+      "inputs": [
+        {
+          "type": "address",
+          "name": "account"
+        },
+        {
+          "type": "bytes32",
+          "name": "neededRole"
+        }
+      ]
+    },
+    {
+      "type": "error",
+      "name": "CaseAlreadyExists",
+      "inputs": [
+        {
+          "type": "bytes32",
+          "name": "caseId"
+        }
+      ]
+    },
+    {
+      "type": "error",
+      "name": "CaseNotFound",
+      "inputs": [
+        {
+          "type": "bytes32",
+          "name": "caseId"
+        }
+      ]
+    },
+    {
+      "type": "error",
+      "name": "DuplicateRelatedCase",
+      "inputs": [
+        {
+          "type": "bytes32",
+          "name": "relatedId"
+        }
+      ]
+    },
+    {
+      "type": "error",
+      "name": "EmptyCaseRef",
+      "inputs": []
+    },
+    {
+      "type": "error",
+      "name": "EmptyCategory",
+      "inputs": []
+    },
+    {
+      "type": "error",
+      "name": "EmptyFilingDate",
+      "inputs": []
+    },
+    {
+      "type": "error",
+      "name": "EmptyNotes",
+      "inputs": []
+    },
+    {
+      "type": "error",
+      "name": "EmptyReason",
+      "inputs": []
+    },
+    {
+      "type": "error",
+      "name": "InvalidMetadataHash",
+      "inputs": []
+    },
+    {
+      "type": "error",
+      "name": "InvalidPriority",
+      "inputs": [
+        {
+          "type": "uint8",
+          "name": "priority"
+        }
+      ]
+    },
+    {
+      "type": "error",
+      "name": "InvalidStatusTransition",
+      "inputs": [
+        {
+          "type": "uint8",
+          "name": "current"
+        },
+        {
+          "type": "uint8",
+          "name": "target"
+        }
+      ]
+    },
+    {
+      "type": "error",
+      "name": "RelatedCaseNotFound",
+      "inputs": [
+        {
+          "type": "bytes32",
+          "name": "relatedId"
+        }
+      ]
+    },
+    {
+      "type": "error",
+      "name": "SelfRelatedCase",
+      "inputs": []
+    },
+    {
+      "type": "error",
+      "name": "TooManyRelatedCases",
+      "inputs": [
+        {
+          "type": "uint256",
+          "name": "count"
+        },
+        {
+          "type": "uint256",
+          "name": "max"
+        }
+      ]
+    },
+    {
+      "type": "error",
+      "name": "UpdateAlreadyAcknowledged",
+      "inputs": [
+        {
+          "type": "uint256",
+          "name": "updateId"
+        }
+      ]
+    },
+    {
+      "type": "error",
+      "name": "UpdateNotFound",
+      "inputs": [
+        {
+          "type": "uint256",
+          "name": "updateId"
+        }
+      ]
+    },
+    {
+      "type": "event",
+      "anonymous": false,
+      "name": "CaseMetadataUpdated",
+      "inputs": [
+        {
+          "type": "bytes32",
+          "name": "caseId",
+          "indexed": true
+        },
+        {
+          "type": "bytes32",
+          "name": "newMetadataHash",
+          "indexed": false
+        },
+        {
+          "type": "address",
+          "name": "officer",
+          "indexed": true
+        },
+        {
+          "type": "string",
+          "name": "reason",
+          "indexed": false
+        }
+      ]
+    },
+    {
+      "type": "event",
+      "anonymous": false,
+      "name": "CaseRegistered",
+      "inputs": [
+        {
+          "type": "bytes32",
+          "name": "caseId",
+          "indexed": true
+        },
+        {
+          "type": "string",
+          "name": "caseRef",
+          "indexed": false
+        },
+        {
+          "type": "string",
+          "name": "category",
+          "indexed": false
+        },
+        {
+          "type": "bytes32",
+          "name": "metadataHash",
+          "indexed": false
+        },
+        {
+          "type": "address",
+          "name": "officer",
+          "indexed": true
+        }
+      ]
+    },
+    {
+      "type": "event",
+      "anonymous": false,
+      "name": "CaseReviewRecorded",
+      "inputs": [
+        {
+          "type": "uint256",
+          "name": "reviewId",
+          "indexed": true
+        },
+        {
+          "type": "bytes32",
+          "name": "caseId",
+          "indexed": true
+        },
+        {
+          "type": "address",
+          "name": "reviewer",
+          "indexed": true
+        },
+        {
+          "type": "uint8",
+          "name": "category",
+          "indexed": false
+        }
+      ]
+    },
+    {
+      "type": "event",
+      "anonymous": false,
+      "name": "CaseStatusChanged",
+      "inputs": [
+        {
+          "type": "bytes32",
+          "name": "caseId",
+          "indexed": true
+        },
+        {
+          "type": "uint8",
+          "name": "oldStatus",
+          "indexed": false
+        },
+        {
+          "type": "uint8",
+          "name": "newStatus",
+          "indexed": false
+        },
+        {
+          "type": "address",
+          "name": "actor",
+          "indexed": true
+        },
+        {
+          "type": "string",
+          "name": "reason",
+          "indexed": false
+        }
+      ]
+    },
+    {
+      "type": "event",
+      "anonymous": false,
+      "name": "CaseUpdateAcknowledged",
+      "inputs": [
+        {
+          "type": "uint256",
+          "name": "updateId",
+          "indexed": true
+        },
+        {
+          "type": "bytes32",
+          "name": "caseId",
+          "indexed": true
+        },
+        {
+          "type": "address",
+          "name": "acknowledger",
+          "indexed": true
+        }
+      ]
+    },
+    {
+      "type": "event",
+      "anonymous": false,
+      "name": "CaseUpdateReported",
+      "inputs": [
+        {
+          "type": "uint256",
+          "name": "updateId",
+          "indexed": true
+        },
+        {
+          "type": "bytes32",
+          "name": "caseId",
+          "indexed": true
+        },
+        {
+          "type": "address",
+          "name": "reporter",
+          "indexed": true
+        },
+        {
+          "type": "uint8",
+          "name": "priority",
+          "indexed": false
+        }
+      ]
+    },
+    {
+      "type": "event",
+      "anonymous": false,
+      "name": "RoleAdminChanged",
+      "inputs": [
+        {
+          "type": "bytes32",
+          "name": "role",
+          "indexed": true
+        },
+        {
+          "type": "bytes32",
+          "name": "previousAdminRole",
+          "indexed": true
+        },
+        {
+          "type": "bytes32",
+          "name": "newAdminRole",
+          "indexed": true
+        }
+      ]
+    },
+    {
+      "type": "event",
+      "anonymous": false,
+      "name": "RoleGranted",
+      "inputs": [
+        {
+          "type": "bytes32",
+          "name": "role",
+          "indexed": true
+        },
+        {
+          "type": "address",
+          "name": "account",
+          "indexed": true
+        },
+        {
+          "type": "address",
+          "name": "sender",
+          "indexed": true
+        }
+      ]
+    },
+    {
+      "type": "event",
+      "anonymous": false,
+      "name": "RoleGranted_CL",
+      "inputs": [
+        {
+          "type": "address",
+          "name": "account",
+          "indexed": true
+        },
+        {
+          "type": "bytes32",
+          "name": "role",
+          "indexed": true
+        },
+        {
+          "type": "address",
+          "name": "grantor",
+          "indexed": true
+        }
+      ]
+    },
+    {
+      "type": "event",
+      "anonymous": false,
+      "name": "RoleRevoked",
+      "inputs": [
+        {
+          "type": "bytes32",
+          "name": "role",
+          "indexed": true
+        },
+        {
+          "type": "address",
+          "name": "account",
+          "indexed": true
+        },
+        {
+          "type": "address",
+          "name": "sender",
+          "indexed": true
+        }
+      ]
+    },
+    {
+      "type": "event",
+      "anonymous": false,
+      "name": "RoleRevoked_CL",
+      "inputs": [
+        {
+          "type": "address",
+          "name": "account",
+          "indexed": true
+        },
+        {
+          "type": "bytes32",
+          "name": "role",
+          "indexed": true
+        },
+        {
+          "type": "address",
+          "name": "revoker",
+          "indexed": true
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "DEFAULT_ADMIN_ROLE",
+      "constant": true,
+      "stateMutability": "view",
+      "payable": false,
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "bytes32",
+          "name": ""
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "MAX_RELATED_CASES",
+      "constant": true,
+      "stateMutability": "view",
+      "payable": false,
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "uint256",
+          "name": ""
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "OFFICER_ROLE",
+      "constant": true,
+      "stateMutability": "view",
+      "payable": false,
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "bytes32",
+          "name": ""
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "REVIEWER_ROLE",
+      "constant": true,
+      "stateMutability": "view",
+      "payable": false,
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "bytes32",
+          "name": ""
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "acknowledgeCaseUpdate",
+      "constant": false,
+      "payable": false,
+      "inputs": [
+        {
+          "type": "uint256",
+          "name": "updateId"
+        },
+        {
+          "type": "bytes32",
+          "name": "caseId"
+        }
+      ],
+      "outputs": []
+    },
+    {
+      "type": "function",
+      "name": "caseIds",
+      "constant": true,
+      "stateMutability": "view",
+      "payable": false,
+      "inputs": [
+        {
+          "type": "uint256",
+          "name": ""
+        }
+      ],
+      "outputs": [
+        {
+          "type": "bytes32",
+          "name": ""
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "computeCaseId",
+      "constant": true,
+      "stateMutability": "pure",
+      "payable": false,
+      "inputs": [
+        {
+          "type": "string",
+          "name": "caseRef"
+        },
+        {
+          "type": "string",
+          "name": "filingDate"
+        }
+      ],
+      "outputs": [
+        {
+          "type": "bytes32",
+          "name": ""
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "getAllCaseIds",
+      "constant": true,
+      "stateMutability": "view",
+      "payable": false,
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "bytes32[]",
+          "name": ""
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "getCase",
+      "constant": true,
+      "stateMutability": "view",
+      "payable": false,
+      "inputs": [
+        {
+          "type": "bytes32",
+          "name": "caseId"
+        }
+      ],
+      "outputs": [
+        {
+          "type": "tuple",
+          "name": "",
+          "components": [
+            {
+              "type": "bytes32",
+              "name": "caseId"
+            },
+            {
+              "type": "string",
+              "name": "caseRef"
+            },
+            {
+              "type": "string",
+              "name": "category"
+            },
+            {
+              "type": "string",
+              "name": "filingDate"
+            },
+            {
+              "type": "bytes32",
+              "name": "metadataHash"
+            },
+            {
+              "type": "address",
+              "name": "filedBy"
+            },
+            {
+              "type": "uint256",
+              "name": "registeredAt"
+            },
+            {
+              "type": "uint256",
+              "name": "blockNumber"
+            },
+            {
+              "type": "uint8",
+              "name": "status"
+            },
+            {
+              "type": "bytes32[]",
+              "name": "relatedCases"
+            },
+            {
+              "type": "string",
+              "name": "description"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "getCaseCount",
+      "constant": true,
+      "stateMutability": "view",
+      "payable": false,
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "uint256",
+          "name": ""
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "getCaseReviews",
+      "constant": true,
+      "stateMutability": "view",
+      "payable": false,
+      "inputs": [
+        {
+          "type": "bytes32",
+          "name": "caseId"
+        }
+      ],
+      "outputs": [
+        {
+          "type": "tuple[]",
+          "name": "",
+          "components": [
+            {
+              "type": "uint256",
+              "name": "id"
+            },
+            {
+              "type": "bytes32",
+              "name": "caseId"
+            },
+            {
+              "type": "address",
+              "name": "reviewer"
+            },
+            {
+              "type": "uint8",
+              "name": "category"
+            },
+            {
+              "type": "string",
+              "name": "notes"
+            },
+            {
+              "type": "uint256",
+              "name": "timestamp"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "getCaseStatus",
+      "constant": true,
+      "stateMutability": "view",
+      "payable": false,
+      "inputs": [
+        {
+          "type": "bytes32",
+          "name": "caseId"
+        }
+      ],
+      "outputs": [
+        {
+          "type": "uint8",
+          "name": ""
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "getCaseUpdateCount",
+      "constant": true,
+      "stateMutability": "view",
+      "payable": false,
+      "inputs": [
+        {
+          "type": "bytes32",
+          "name": "caseId"
+        }
+      ],
+      "outputs": [
+        {
+          "type": "uint256",
+          "name": ""
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "getCaseUpdates",
+      "constant": true,
+      "stateMutability": "view",
+      "payable": false,
+      "inputs": [
+        {
+          "type": "bytes32",
+          "name": "caseId"
+        }
+      ],
+      "outputs": [
+        {
+          "type": "tuple[]",
+          "name": "",
+          "components": [
+            {
+              "type": "uint256",
+              "name": "id"
+            },
+            {
+              "type": "bytes32",
+              "name": "caseId"
+            },
+            {
+              "type": "address",
+              "name": "reporter"
+            },
+            {
+              "type": "string",
+              "name": "summary"
+            },
+            {
+              "type": "uint8",
+              "name": "priority"
+            },
+            {
+              "type": "uint256",
+              "name": "timestamp"
+            },
+            {
+              "type": "bool",
+              "name": "acknowledged"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "getCasesRelatedTo",
+      "constant": true,
+      "stateMutability": "view",
+      "payable": false,
+      "inputs": [
+        {
+          "type": "bytes32",
+          "name": "caseId"
+        }
+      ],
+      "outputs": [
+        {
+          "type": "bytes32[]",
+          "name": ""
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "getRelatedCases",
+      "constant": true,
+      "stateMutability": "view",
+      "payable": false,
+      "inputs": [
+        {
+          "type": "bytes32",
+          "name": "caseId"
+        }
+      ],
+      "outputs": [
+        {
+          "type": "bytes32[]",
+          "name": ""
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "getRoleAdmin",
+      "constant": true,
+      "stateMutability": "view",
+      "payable": false,
+      "inputs": [
+        {
+          "type": "bytes32",
+          "name": "role"
+        }
+      ],
+      "outputs": [
+        {
+          "type": "bytes32",
+          "name": ""
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "grantOfficerRole",
+      "constant": false,
+      "payable": false,
+      "inputs": [
+        {
+          "type": "address",
+          "name": "account"
+        }
+      ],
+      "outputs": []
+    },
+    {
+      "type": "function",
+      "name": "grantReviewerRole",
+      "constant": false,
+      "payable": false,
+      "inputs": [
+        {
+          "type": "address",
+          "name": "account"
+        }
+      ],
+      "outputs": []
+    },
+    {
+      "type": "function",
+      "name": "grantRole",
+      "constant": false,
+      "payable": false,
+      "inputs": [
+        {
+          "type": "bytes32",
+          "name": "role"
+        },
+        {
+          "type": "address",
+          "name": "account"
+        }
+      ],
+      "outputs": []
+    },
+    {
+      "type": "function",
+      "name": "hasRole",
+      "constant": true,
+      "stateMutability": "view",
+      "payable": false,
+      "inputs": [
+        {
+          "type": "bytes32",
+          "name": "role"
+        },
+        {
+          "type": "address",
+          "name": "account"
+        }
+      ],
+      "outputs": [
+        {
+          "type": "bool",
+          "name": ""
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "recordCaseReview",
+      "constant": false,
+      "payable": false,
+      "inputs": [
+        {
+          "type": "bytes32",
+          "name": "caseId"
+        },
+        {
+          "type": "uint8",
+          "name": "category"
+        },
+        {
+          "type": "string",
+          "name": "notes"
+        }
+      ],
+      "outputs": []
+    },
+    {
+      "type": "function",
+      "name": "registerCase",
+      "constant": false,
+      "payable": false,
+      "inputs": [
+        {
+          "type": "string",
+          "name": "caseRef"
+        },
+        {
+          "type": "string",
+          "name": "category"
+        },
+        {
+          "type": "string",
+          "name": "filingDate"
+        },
+        {
+          "type": "bytes32",
+          "name": "metadataHash"
+        },
+        {
+          "type": "string",
+          "name": "description"
+        },
+        {
+          "type": "bytes32[]",
+          "name": "relatedCases"
+        }
+      ],
+      "outputs": []
+    },
+    {
+      "type": "function",
+      "name": "renounceRole",
+      "constant": false,
+      "payable": false,
+      "inputs": [
+        {
+          "type": "bytes32",
+          "name": "role"
+        },
+        {
+          "type": "address",
+          "name": "callerConfirmation"
+        }
+      ],
+      "outputs": []
+    },
+    {
+      "type": "function",
+      "name": "reportCaseUpdate",
+      "constant": false,
+      "payable": false,
+      "inputs": [
+        {
+          "type": "bytes32",
+          "name": "caseId"
+        },
+        {
+          "type": "string",
+          "name": "summary"
+        },
+        {
+          "type": "uint8",
+          "name": "priority"
+        }
+      ],
+      "outputs": []
+    },
+    {
+      "type": "function",
+      "name": "reviewCount",
+      "constant": true,
+      "stateMutability": "view",
+      "payable": false,
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "uint256",
+          "name": ""
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "revokeOfficerRole",
+      "constant": false,
+      "payable": false,
+      "inputs": [
+        {
+          "type": "address",
+          "name": "account"
+        }
+      ],
+      "outputs": []
+    },
+    {
+      "type": "function",
+      "name": "revokeReviewerRole",
+      "constant": false,
+      "payable": false,
+      "inputs": [
+        {
+          "type": "address",
+          "name": "account"
+        }
+      ],
+      "outputs": []
+    },
+    {
+      "type": "function",
+      "name": "revokeRole",
+      "constant": false,
+      "payable": false,
+      "inputs": [
+        {
+          "type": "bytes32",
+          "name": "role"
+        },
+        {
+          "type": "address",
+          "name": "account"
+        }
+      ],
+      "outputs": []
+    },
+    {
+      "type": "function",
+      "name": "supportsInterface",
+      "constant": true,
+      "stateMutability": "view",
+      "payable": false,
+      "inputs": [
+        {
+          "type": "bytes4",
+          "name": "interfaceId"
+        }
+      ],
+      "outputs": [
+        {
+          "type": "bool",
+          "name": ""
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "updateCaseMetadata",
+      "constant": false,
+      "payable": false,
+      "inputs": [
+        {
+          "type": "bytes32",
+          "name": "caseId"
+        },
+        {
+          "type": "bytes32",
+          "name": "newMetadataHash"
+        },
+        {
+          "type": "string",
+          "name": "reason"
+        }
+      ],
+      "outputs": []
+    },
+    {
+      "type": "function",
+      "name": "updateCaseStatus",
+      "constant": false,
+      "payable": false,
+      "inputs": [
+        {
+          "type": "bytes32",
+          "name": "caseId"
+        },
+        {
+          "type": "uint8",
+          "name": "newStatus"
+        },
+        {
+          "type": "string",
+          "name": "reason"
+        }
+      ],
+      "outputs": []
+    },
+    {
+      "type": "function",
+      "name": "updateCount",
+      "constant": true,
+      "stateMutability": "view",
+      "payable": false,
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "uint256",
+          "name": ""
+        }
+      ]
+    }
+  ]
+}
